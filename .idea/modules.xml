@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/atcrowdfunding-admin-0-parent.iml" filepath="$PROJECT_DIR$/atcrowdfunding-admin-0-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/atcrowdfunding-admin-1-webui/atcrowdfunding-admin-1-webui.iml" filepath="$PROJECT_DIR$/atcrowdfunding-admin-1-webui/atcrowdfunding-admin-1-webui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/atcrowdfunding-admin-2-component/atcrowdfunding-admin-2-component.iml" filepath="$PROJECT_DIR$/atcrowdfunding-admin-2-component/atcrowdfunding-admin-2-component.iml" />
+      <module fileurl="file://$PROJECT_DIR$/atcrowdfunding-admin-3-common/atcrowdfunding-admin-3-common.iml" filepath="$PROJECT_DIR$/atcrowdfunding-admin-3-common/atcrowdfunding-admin-3-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/atcrowdfunding-admin-4-entity/atcrowdfunding-admin-4-entity.iml" filepath="$PROJECT_DIR$/atcrowdfunding-admin-4-entity/atcrowdfunding-admin-4-entity.iml" />
+    </modules>
+  </component>
+</project>

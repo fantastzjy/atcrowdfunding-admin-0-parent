@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 扫描AdminService 必须扫描实现类才可 -->
+	<context:component-scan
+		base-package="com.atguigu.crowd.funding.service.impl"></context:component-scan>
+
+
+	<!-- 加载外部属性文件 -->
+	<context:property-placeholder
+		location="classpath:jdbc.properties" />
+
+	<!-- 配置数据源 -->
+	<bean id="dataSource"
+		class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="driverClassName" value="${jdbc.driver}" />
+	</bean>
+	<!-- 配置sqlSessionFactoryBean -->
+	<bean id="sqlSessionFactoryBean"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 配置 Mybatis文件的位置 -->
+		<property name="configLocation"
+			value="classpath:mybatis/mybatis-config.xml"></property>
+		<!-- 配置Mapper配置文件的位置 注意用 * 代替不同的mapper -->
+		<property name="mapperLocations"
+			value="classpath:mybatis/mapper/*Mapper.xml"></property>
+		<!-- 配置数据源 -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 没有用到简写所以不用配置这个 -->
+		<!-- <property name="typeAliasesPackage"></property> -->
+
+		<!-- 配置PageHelper插件 注意配置的位置 是在sqlSessionFactoryBean里面 -->
+		<property name="plugins">
+			<array>
+				<!-- 配置PageHelper全类名 -->
+				<bean class="com.github.pagehelper.PageHelper">
+					<!-- 配置相关参数 -->
+					<property name="properties">
+						<props>
+							<!-- 数据库方言指定数据库类型为MySQL -->
+							<prop key="dialect">mysql</prop>
+
+							<!-- 配置自动修正页码 -->
+							<!-- pageNo的有效范围：1~总页数 -->
+							<prop key="reasonable">true</prop>
+						</props>
+					</property>
+				</bean>
+			</array>
+		</property>
+
+
+	</bean>
+
+	<!-- 配置mybatis扫描器 为了在 mapper即在AdminServiceImpl.java实现类中装配时能扫描到 -->
+	<bean id="mapperScannerConfigurer"
+		class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 指定mapper接口所在的包 basePackage名字是固定的 -->
+		<!-- 这里，在不同的工程文件中 这里的路径仍然直接写类的路径就行，不用再写工程名 -->
+		<property name="basePackage"
+			value="com.atguigu.crowd.funding.mapper"></property>
+
+	</bean>
+</beans>

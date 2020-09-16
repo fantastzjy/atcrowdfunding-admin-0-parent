@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="atcrowdfunding-admin-1-webui:war">
+    <output-path>$PROJECT_DIR$/atcrowdfunding-admin-1-webui/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>atcrowdfunding-admin-1-webui</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="atcrowdfunding-admin-1-webui-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="atcrowdfunding-admin-1-webui:war exploded" />
+    </root>
+  </artifact>
+</component>

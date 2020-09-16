@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+    <!-- 不开启名称空间即使正确也会报错 -->
+    <!-- 配置自动扫描的包 -->
+    <context:component-scan base-package="com.atguigu.crowd.funding.handler,com.atguigu.crowd.funding.exeption"/>
+
+    <!-- 配置SpringMVC标配：注解驱动 -->
+    <mvc:annotation-driven/>
+
+    <!-- 配置视图解析器 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+    <!-- @RequestMapping("/admin/to/login/page") public String toLoginPage()
+        { return "admin-login"; } -->
+    <mvc:view-controller path="/admin/to/login/page.html" view-name="admin-login"/>
+    <mvc:view-controller path="/admin/to/main/page.html" view-name="admin-main"/>
+    <mvc:view-controller path="/index.html" view-name="index-page"/>
+    <mvc:view-controller path="/admin/to/add/page.html" view-name="admin-add"/>
+    <mvc:view-controller path="/role/to/page.html" view-name="role-page"/>
+
+
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 设置当前拦截器要拦截的路径 -->
+            <mvc:mapping path="/**"/>
+
+            <!-- 设置要拦截的路径中的例外，也就是不拦截的路径 -->
+            <mvc:exclude-mapping path="/admin/to/login/page.html"/>
+            <mvc:exclude-mapping path="/admin/do/login.html"/>
+            <mvc:exclude-mapping path="/admin/logout.html"/>
+            <mvc:exclude-mapping path="/index.html"/>
+
+            <!-- 拦截器的bean -->
+            <bean class="com.atguigu.crowd.funding.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+</beans>
