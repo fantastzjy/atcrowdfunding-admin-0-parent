@@ -9,6 +9,7 @@
 	</parent>
 	<artifactId>atcrowdfunding-admin-1-webui</artifactId>
 	<packaging>war</packaging>
+	
 	<dependencies>
 		<dependency>
 			<groupId>com.atguigu.crowd.funding</groupId>

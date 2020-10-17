@@ -21,6 +21,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		Admin admin = (Admin) session.getAttribute(CrowdFundingConstant.ATTR_NAME_LOGIN_ADMIN);
 		// 如果没有获取到Admin对象
 		if (admin == null) {
+			//原来的只能实现对同步的请求进行拦截，没办法对异步的请求进行的登录进行拦截
+			//异步的只能在开发者面板进行查看
+			//这里实现异步的请求
 
 			// 将提示消息存入request域
 			request.setAttribute(CrowdFundingConstant.ATTR_NAME_MESSAGE, CrowdFundingConstant.MESSAGE_ACCESS_DENIED);
